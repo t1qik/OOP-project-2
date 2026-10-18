@@ -10,5 +10,8 @@ void main() {
     ParseResponse parsed = new ParseResponse(response.getResponse());
     parsed.OutParsed();
 
+    OpenInBrowser desktop = new OpenInBrowser(parsed.getParsed());
+    desktop.GoInBrowser();
+
     return;
 }

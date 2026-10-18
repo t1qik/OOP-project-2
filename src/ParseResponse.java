@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class ParseResponse {
 
-    WikiSearchResponse parsed;
+    private WikiSearchResponse parsed;
 
     ParseResponse(String response){
         Gson gson = new Gson();
@@ -49,8 +49,10 @@ public class ParseResponse {
 
     void OutParsed() {
         System.out.println("Всего найдено: " + parsed.getQuery().getSearchinfo().getTotalhits());
+        int i = 1;
         for (WikiSearchResponse.SearchResult r : parsed.getQuery().getSearch()) {
-            System.out.println(r.getTitle() + " (pageid=" + r.getPageid() + ")");
+            System.out.println(i + ")" + r.getTitle() + " (pageid=" + r.getPageid() + ")");
+            i++;
         }
     }
 }
