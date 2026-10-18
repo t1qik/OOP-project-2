@@ -5,5 +5,10 @@ void main() {
     Search search = new Search();
     search.AddSearch();
 
+    SendSearch response = new SendSearch(search.getSearch());
+
+    ParseResponse parsed = new ParseResponse(response.getResponse());
+    parsed.OutParsed();
+
     return;
 }

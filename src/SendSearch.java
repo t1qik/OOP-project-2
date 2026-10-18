@@ -5,6 +5,7 @@ import java.net.http.HttpResponse;
 
 public class SendSearch {
     private String search;
+    private String response;
     SendSearch(String search){
         this.search = "https://ru.wikipedia.org/w/api.php?action=query&list=search&srsearch=" + search
                 + "&format=json"
@@ -16,7 +17,7 @@ public class SendSearch {
 
             // 3. Строим запрос
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(search))
+                    .uri(URI.create(this.search))
                     // Устанавливаем User-Agent (обязательно для Википедии)
                     .header("User-Agent", "MyWikiBot/1.0 (dmitrijfrolkin470@gmail.com)")
                     .GET() // Указываем метод GET
@@ -24,13 +25,18 @@ public class SendSearch {
 
             // 4. Отправляем синхронный запрос и получаем ответ как String
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            this.response = response.body();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     String getSearch(){
         return search;
+    }
+    String getResponse(){
+        return response;
     }
 
 }
